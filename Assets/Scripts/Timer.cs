@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
 
     void Awake(){   
         timerUIFill = transform.GetChild(0).GetComponent<Image>();
-        timerText = GetComponent<TextMeshProUGUI>();
+        timerText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         genangans = new List<GameObject>(GameObject.FindGameObjectsWithTag("object-genangan"));
         foreach(GameObject genangan in genangans){
             genangan.SetActive(false);

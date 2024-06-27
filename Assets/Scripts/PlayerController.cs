@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake(){
         agent = GetComponent<NavMeshAgent>();
+        interactManager = FindObjectOfType<InteractManager>();
     }
 
     void Start()
