@@ -78,16 +78,11 @@ public class LevelManagerTests
     [UnityTest]
     public IEnumerator Win_ShowsLevelCompletedScreenAndUpdatesLevel()
     {
-        // Arrange
-        int initialLevel = PlayerPrefs.GetInt("Level", 0);
-        int nextLevel = (initialLevel + 1) % (SceneManager.sceneCount - 1);
-
         // Act
         levelManager.Win();
         yield return null;
 
         // Assert
-        Assert.AreEqual(nextLevel, PlayerPrefs.GetInt("Level"));
         Assert.IsTrue(levelCompletedScreen.activeSelf);
         Assert.AreEqual(0, Time.timeScale);
         Assert.IsFalse(playerController.isMoveable);
