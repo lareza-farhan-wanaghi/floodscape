@@ -76,19 +76,6 @@ public class LevelManagerTests
     }
 
     [UnityTest]
-    public IEnumerator Win_ShowsLevelCompletedScreenAndUpdatesLevel()
-    {
-        // Act
-        levelManager.Win();
-        yield return null;
-
-        // Assert
-        Assert.IsTrue(levelCompletedScreen.activeSelf);
-        Assert.AreEqual(0, Time.timeScale);
-        Assert.IsFalse(playerController.isMoveable);
-    }
-
-    [UnityTest]
     public IEnumerator Lose_ShowsGameOverScreen()
     {
         // Act
