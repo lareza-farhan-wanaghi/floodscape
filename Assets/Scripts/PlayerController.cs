@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     [HideInInspector] public NavMeshAgent agent;
-    [HideInInspector] public InteractManager interactManager;
     [HideInInspector] public EventSystem eventSystem;
     [HideInInspector] public GraphicRaycaster graphicRaycaster;
     [HideInInspector] public bool isMoveable = true;
+    [HideInInspector] public InteractManager interactManager;
 
     void Awake(){
         agent = GetComponent<NavMeshAgent>();

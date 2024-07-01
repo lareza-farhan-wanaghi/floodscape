@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    enum ScreenType {
+        OPTION,
+        LEVELCOMPLETED,
+        GAMEOVER,
+
+    }
     [HideInInspector] public Timer timer;
     [HideInInspector] public PlayerController playerController;
     [HideInInspector] public GameObject optionScreen;
@@ -16,12 +22,6 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public GameObject levelCompletedScreen;
     public MissionData[] levelMissionData;
 
-    enum ScreenType {
-        OPTION,
-        LEVELCOMPLETED,
-        GAMEOVER,
-
-    }
     void Awake(){
         timer = FindObjectOfType<Timer>();
         playerController = FindObjectOfType<PlayerController>();
