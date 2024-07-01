@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class MissionManager : MonoBehaviour
 {
-    [SerializeField] GameObject missionUIPrefab;
-    Action onCompleted;
-    Dictionary<string, ActiveMission> activeMissions = new Dictionary<string, ActiveMission> ();
+    public GameObject missionUIPrefab;
+    [HideInInspector] public Action onCompleted;
+    [HideInInspector] public Dictionary<string, ActiveMission> activeMissions = new Dictionary<string, ActiveMission> ();
 
     public void Init(Action _onCompletedCallback, MissionData[] _missionDatas){
         for(int i=0;i<_missionDatas.Length;i++){
@@ -38,7 +38,7 @@ public class MissionManager : MonoBehaviour
         onCompleted.Invoke();
     }
 
-    class ActiveMission{
+    public class ActiveMission{
         public MissionData missionData;
         public GameObject ui;
         public bool isCompleted;

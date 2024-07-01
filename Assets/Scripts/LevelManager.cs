@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    Timer timer;
-    PlayerController playerController;
-    GameObject optionScreen;
-    GameObject gameoverScreen;
-    InteractManager interactManager;
-    MissionManager missionManager;
-    GameObject levelCompletedScreen;
-    [SerializeField] MissionData[] levelMissionData;
+    [HideInInspector] public Timer timer;
+    [HideInInspector] public PlayerController playerController;
+    [HideInInspector] public GameObject optionScreen;
+    [HideInInspector] public GameObject gameoverScreen;
+    [HideInInspector] public InteractManager interactManager;
+    [HideInInspector] public MissionManager missionManager;
+    [HideInInspector] public GameObject levelCompletedScreen;
+    public MissionData[] levelMissionData;
 
     enum ScreenType {
         OPTION,

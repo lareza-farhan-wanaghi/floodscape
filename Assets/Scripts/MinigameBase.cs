@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public class MinigameBase : MonoBehaviour{
-    Action onSuccessCallback;
+    [HideInInspector] public Action onSuccessCallback;
 
     public void Play(Action _onSuccessCallback){
         onSuccessCallback=_onSuccessCallback;

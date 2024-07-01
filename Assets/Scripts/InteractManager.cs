@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class InteractManager : MonoBehaviour
 {
-    InteractableItem interactableItem;
-    Button interactButton;
-    Backpack backpack;
-    Action<ItemData> onInteract;
-    MinigameManager minigameManager;
+    [HideInInspector] public InteractableItem interactableItem;
+    [HideInInspector] public Button interactButton;
+    [HideInInspector] public Backpack backpack;
+    [HideInInspector] public Action<ItemData> onInteract;
+    [HideInInspector] public MinigameManager minigameManager;
     
     void  Awake(){
         interactButton = GetComponent<Button>();
@@ -24,8 +24,8 @@ public class InteractManager : MonoBehaviour
 
     public void Interact(){
         if(backpack.IsAvailable(interactableItem.data)){
-            if(minigameManager.CheckForCompletion(interactableItem.data, Interact)){
-                backpack.ReduceItem(interactableItem.data);
+            if(minigameManager == null || minigameManager.CheckForCompletion(interactableItem.data, Interact)){
+                backpack.ReduceItem(interactableItem.data.requiredItem);
                 backpack.AddItem(interactableItem.data);
                 onInteract(interactableItem.data);
                 interactableItem.gameObject.SetActive(false);
@@ -43,5 +43,4 @@ public class InteractManager : MonoBehaviour
         interactButton.interactable = false;
         interactableItem = null;
     }
-
 }

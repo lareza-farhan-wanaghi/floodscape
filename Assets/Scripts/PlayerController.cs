@@ -5,11 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
-    NavMeshAgent agent;
-    InteractManager interactManager;
-    EventSystem eventSystem;
-    GraphicRaycaster graphicRaycaster;
-    bool isMoveable = true;
+    [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public InteractManager interactManager;
+    [HideInInspector] public EventSystem eventSystem;
+    [HideInInspector] public GraphicRaycaster graphicRaycaster;
+    [HideInInspector] public bool isMoveable = true;
 
     void Awake(){
         agent = GetComponent<NavMeshAgent>();
@@ -67,5 +67,9 @@ public class PlayerController : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         graphicRaycaster.Raycast(pointerEventData, results);
         return results.Count > 0;
+    }
+
+    public bool GetIsMoveable(){
+        return isMoveable;
     }
 }

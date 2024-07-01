@@ -1,19 +1,18 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    Image timerUIFill;
-    TextMeshProUGUI timerText;
-    float maxTime;
-    List<GameObject> genangans;
-    int numOfShowingGenangan;
-    float[] splashTimes = new float[]{0.25f, 0.5f, 0.75f, float.MaxValue};
-    int lastTriggeredTimeIndex;
+    [HideInInspector] public Image timerUIFill;
+    [HideInInspector] public TextMeshProUGUI timerText;
+    [HideInInspector] public float maxTime;
+    [HideInInspector] public List<GameObject> genangans;
+    [HideInInspector] public int numOfShowingGenangan;
+    [HideInInspector] public float[] splashTimes = new float[]{0.25f, 0.5f, 0.75f, float.MaxValue};
+    [HideInInspector] public int lastTriggeredTimeIndex;
 
     void Awake(){   
         timerUIFill = transform.GetChild(0).GetComponent<Image>();
@@ -33,10 +32,8 @@ public class Timer : MonoBehaviour
 
     void TimeUpdateCallback(float _time){
         timerUIFill.fillAmount = (maxTime - _time)/maxTime;
-        timerText.SetText(Mathf.CeilToInt(_time).ToString());
+        timerText?.SetText(Mathf.CeilToInt(_time).ToString());
         if(timerUIFill.fillAmount > splashTimes[lastTriggeredTimeIndex]){
-            Debug.Log(timerUIFill.fillAmount);
-            Debug.Log(splashTimes[lastTriggeredTimeIndex]);
             lastTriggeredTimeIndex+=1;
             ShowSplash();
         }

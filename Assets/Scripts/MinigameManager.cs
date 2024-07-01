@@ -6,9 +6,9 @@ using UnityEngine.Scripting;
 
 public class MinigameManager : MonoBehaviour
 {
-    [SerializeField] MinigameBase[] minigames;
-    PlayerController playerController;
-    bool isCompletedMinigame;
+    public MinigameBase[] minigames;
+    [HideInInspector] public PlayerController playerController;
+    [HideInInspector] public bool isCompletedMinigame;
 
     void Awake(){
         playerController = FindObjectOfType<PlayerController>();

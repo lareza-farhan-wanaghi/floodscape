@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Backpack : MonoBehaviour
 {
-   [SerializeField] GameObject uiPrefab;
-    Dictionary<string, ItemOnBackpack> items = new Dictionary<string, ItemOnBackpack>();
+    public GameObject uiPrefab;
+    [HideInInspector] public Dictionary<string, ItemOnBackpack> items = new Dictionary<string, ItemOnBackpack>();
 
     public void AddItem(ItemData _itemData){
         if(!_itemData.collectable){
@@ -20,14 +20,13 @@ public class Backpack : MonoBehaviour
     }
     
     public void ReduceItem(ItemData _itemData){
-        if(_itemData.requiredItem == null){
+        if(_itemData == null){
             return;
         }
-
-        items[_itemData.requiredItem.itemName].DecreaseTotal();
-        if(items[_itemData.requiredItem.itemName].total==0){
-            Destroy(items[_itemData.requiredItem.itemName].ui);
-            items.Remove(_itemData.requiredItem.itemName);
+        items[_itemData.itemName].DecreaseTotal();
+        if(items[_itemData.itemName].total==0){
+            Destroy(items[_itemData.itemName].ui);
+            items.Remove(_itemData.itemName);
         }
     }
 
@@ -38,7 +37,8 @@ public class Backpack : MonoBehaviour
             return false;
         }
     }
-    class ItemOnBackpack{
+
+    public class ItemOnBackpack{
         public ItemData data;
         public GameObject ui;
         public int total; 
@@ -59,7 +59,7 @@ public class Backpack : MonoBehaviour
         }
 
         void UpdateUI(){
-            ui.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(total.ToString());
+            ui.transform.GetComponentInChildren<TextMeshProUGUI>()?.SetText(total.ToString());
         }
    }
 }
