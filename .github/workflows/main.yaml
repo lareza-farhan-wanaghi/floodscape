@@ -72,5 +72,39 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Build
-          path: build/Android/Android.aab
+          name: build-Android
+          path: build/Android
+  release:
+    name: Release Process
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      GOOGLE_PLAY_KEY_FILE: ${{ secrets.GOOGLE_PLAY_KEY_FILE }}
+      GOOGLE_PLAY_KEY_FILE_PATH:
+        ${{ format('{0}/fastlane/google-fastlane.json', github.workspace) }}
+      ANDROID_BUILD_FILE_PATH: ${{ format('{0}/build/Android/Android.aab', github.workspace) }}
+      ANDROID_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Download Android Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-Android
+          path: build/Android
+      - name: Add Authentication
+        run: echo "$GOOGLE_PLAY_KEY_FILE" > $GOOGLE_PLAY_KEY_FILE_PATH
+      - name: Set up Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+      - name: Upload to Google Play Internal
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: 'android internal'
+      - name: Cleanup to avoid storage limit
+        if: always()
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: build-Android
