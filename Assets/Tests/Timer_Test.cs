@@ -38,6 +38,6 @@ public class Timer_Test
 
         // Assert
         Assert.AreEqual(0, timer.lastTriggeredTimeIndex);
-        Assert.AreNotEqual(maxTime, timer.maxTime);
+        Assert.AreEqual(maxTime, timer.maxTime);
     }
 }
