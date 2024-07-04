@@ -64,15 +64,15 @@ public class Backpack : MonoBehaviour
    }
 }
 
-// This script should only be compiled during the build process
-#if !UNITY_EDITOR
-public class BuildOnlyScript
-{
-    // Introduce a deliberate syntax error
-    public void MethodWithSyntaxError()
-    {
-        // Missing semicolon is an example of a syntax error
-        int a = 0
-    }
-}
-#endif
+// // This script should only be compiled during the build process
+// #if !UNITY_EDITOR
+// public class BuildOnlyScript
+// {
+//     // Introduce a deliberate syntax error
+//     public void MethodWithSyntaxError()
+//     {
+//         // Missing semicolon is an example of a syntax error
+//         int a = 0
+//     }
+// }
+// #endif

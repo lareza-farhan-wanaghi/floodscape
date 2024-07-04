@@ -70,8 +70,8 @@ jobs:
         with:
           name: build-Android
           path: build/Android/Android.aab
-  release:
-    name: Release Process
+  delivery:
+    name: Delivery Process
     runs-on: ubuntu-latest
     needs: build
     env:
