@@ -120,6 +120,6 @@ public class Backpack_Test
         bool isAvailable = backpack.IsAvailable(requiredItemData);
 
         // Assert
-        Assert.IsTrue(isAvailable);
+        Assert.IsFalse(isAvailable);
     }
 }
