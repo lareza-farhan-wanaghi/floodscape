@@ -65,7 +65,7 @@ public class Backpack : MonoBehaviour
 }
 
 // This script should only be compiled during the build process
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
 public class BuildOnlyScript
 {
     // Introduce a deliberate syntax error
