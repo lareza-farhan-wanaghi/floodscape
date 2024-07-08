@@ -23,7 +23,7 @@ public class MissionManager : MonoBehaviour
         foreach(ActiveMission missionOnRoll in activeMissions.Values){
             if(!missionOnRoll.isCompleted && missionOnRoll.missionData.itemData == _itemData){
                 missionOnRoll.MarkCompleted();
-                CheckAllMissions();
+                LeanTween.delayedCall(0.5f, CheckAllMissions);
                 break;
             }
         }

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e31452569390849bd9a591066b3647d1, type: 3}
-  m_Name: Mission-1
+  m_Script: {fileID: 11500000, guid: d27206e5b011a4dcfbd8a19ee49d2b7e, type: 3}
+  m_Name: Item-Pelampung
   m_EditorClassIdentifier: 
-  missionName: Fix Bocor
-  itemData: {fileID: 11400000, guid: 3e9023943a07b47a18984323043e0896, type: 2}
-  missionSprite: {fileID: 21300000, guid: 748ae8b33df036b46a86e0387f1602cf, type: 3}
+  itemSprite: {fileID: 21300000, guid: dcea51d6065d64246aeec467afeff684, type: 3}
+  itemName: Pelampung
+  requiredItem: {fileID: 0}
+  collectable: 0
+  minigameIndex: -1

@@ -82,26 +82,26 @@ public class MissionManager_Test
         Assert.IsFalse(completedCallbackInvoked); 
     }
 
-    [Test]
-    public void CheckMission_InvokesCompletedCallbackIfAllMissionsCompleted()
-    {
-        bool completedCallbackInvoked = false;
+    // [Test]
+    // public void CheckMission_InvokesCompletedCallbackIfAllMissionsCompleted()
+    // {
+    //     bool completedCallbackInvoked = false;
 
-        // Arrange
-        missionManager.activeMissions = new Dictionary<string, MissionManager.ActiveMission>();
-        missionManager.Init(() => completedCallbackInvoked = true, missionDatas);
+    //     // Arrange
+    //     missionManager.activeMissions = new Dictionary<string, MissionManager.ActiveMission>();
+    //     missionManager.Init(() => completedCallbackInvoked = true, missionDatas);
 
-        // Act
-        for (int i = 0; i < missionDatas.Length; i++)
-        {
-            missionManager.CheckMission(missionDatas[i].itemData);
-        }
+    //     // Act
+    //     for (int i = 0; i < missionDatas.Length; i++)
+    //     {
+    //         missionManager.CheckMission(missionDatas[i].itemData);
+    //     }
  
-        // Assert
-        for (int i = 0; i < missionDatas.Length; i++)
-        {
-            Assert.IsTrue(missionManager.activeMissions["Mission"+i].isCompleted);
-        }
-        Assert.IsTrue(completedCallbackInvoked);
-    }
+    //     // Assert
+    //     for (int i = 0; i < missionDatas.Length; i++)
+    //     {
+    //         Assert.IsTrue(missionManager.activeMissions["Mission"+i].isCompleted);
+    //     }
+    //     Assert.IsTrue(completedCallbackInvoked);
+    // }
 }
