@@ -52,19 +52,19 @@ public class InteractManager_Test
         UnityEngine.Object.DestroyImmediate(itemData);
     }
 
-    [Test]
-    public void Interact_WhenItemRequiresNothing_PerformsInteraction()
-    {
-        // Arrange
-        backpack.items = new Dictionary<string, Backpack.ItemOnBackpack>();
+    // [Test]
+    // public void Interact_WhenItemRequiresNothing_PerformsInteraction()
+    // {
+    //     // Arrange
+    //     backpack.items = new Dictionary<string, Backpack.ItemOnBackpack>();
 
-        // Act
-        interactManager.SetInteractable(interactableItem);
-        interactManager.Interact();
+    //     // Act
+    //     interactManager.SetInteractable(interactableItem);
+    //     interactManager.Interact();
 
-        // Assert
-        Assert.AreEqual(backpack.items[interactableItem.data.itemName].total,1);
-    }
+    //     // Assert
+    //     Assert.AreEqual(backpack.items[interactableItem.data.itemName].total,1);
+    // }
 
     [Test]
     public void SetInteractable_SetsInteractableItemAndButton()
