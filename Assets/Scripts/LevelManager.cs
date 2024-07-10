@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public InteractManager interactManager;
     [HideInInspector] public MissionManager missionManager;
     [HideInInspector] public GameObject levelCompletedScreen;
+    [HideInInspector] public AudioManager audioManager;
     public MissionData[] levelMissionData;
 
     void Awake(){
@@ -29,44 +30,58 @@ public class LevelManager : MonoBehaviour
         gameoverScreen = GameObject.FindGameObjectWithTag("screen-gameover");
         levelCompletedScreen = GameObject.FindGameObjectWithTag("screen-levelcompleted");
         interactManager = FindObjectOfType<InteractManager>();
-        missionManager = FindAnyObjectByType<MissionManager>();
+        missionManager = FindObjectOfType<MissionManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Start()
     {
         interactManager.Init(missionManager.CheckMission);
-        missionManager.Init(()=>ShowScreen(ScreenType.LEVELCOMPLETED),levelMissionData);
-        timer.StartTime(Lose, 15);
+        missionManager.Init(Win,levelMissionData);
+        timer.StartTime(Lose, 30);
         playerController.ResetPosition();
         HideScreen();
     }
 
     public void RestartLevel(){
+        audioManager.PlayButton();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevel(){
-        SceneManager.LoadScene("Level "+PlayerPrefs.GetInt("Level",0));
+        audioManager.PlayButton();
+        int buildidx = SceneManager.GetActiveScene().buildIndex+1;
+        int maxbuild = SceneManager.sceneCountInBuildSettings;
+        int nextcount = buildidx % maxbuild ;
+        Debug.Log(buildidx);
+        Debug.Log(maxbuild);
+        Debug.Log(nextcount);
+        SceneManager.LoadScene(nextcount);
     }
 
     public void ResumeGame(){
+        audioManager.PlayButton();
         HideScreen();
     }
 
     public void Mainmenu(){
+        audioManager.PlayButton();
         SceneManager.LoadScene("Mainmenu");
     }
 
     public void Option(){
+        audioManager.PlayButton();
         ShowScreen(ScreenType.OPTION);
     }
 
     public void Win(){
-        PlayerPrefs.SetInt("Level",(PlayerPrefs.GetInt("Level",0)+1)%(SceneManager.sceneCount-1));
+        audioManager.PlayWin();
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
         ShowScreen(ScreenType.LEVELCOMPLETED);
     }
      
     public void Lose(){
+        audioManager.PlayLose();
         ShowScreen(ScreenType.GAMEOVER);
     }
 

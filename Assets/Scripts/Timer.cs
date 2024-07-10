@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
     [HideInInspector] public float maxTime;
     [HideInInspector] public List<GameObject> genangans;
     [HideInInspector] public int numOfShowingGenangan;
-    [HideInInspector] public float[] splashTimes = new float[]{0.25f, 0.5f, 0.75f, float.MaxValue};
+    [HideInInspector] public float[] splashTimes;
     [HideInInspector] public int lastTriggeredTimeIndex;
 
     void Awake(){   
@@ -21,6 +21,7 @@ public class Timer : MonoBehaviour
         foreach(GameObject genangan in genangans){
             genangan.SetActive(false);
         }
+        splashTimes = new float[]{0.75f,  0.5f, 0.25f, float.MinValue };
         numOfShowingGenangan = genangans.Count/(splashTimes.Length-1);
     }
 
@@ -31,9 +32,9 @@ public class Timer : MonoBehaviour
     }
 
     void TimeUpdateCallback(float _time){
-        timerUIFill.fillAmount = (maxTime - _time)/maxTime;
+        timerUIFill.fillAmount = _time/maxTime;
         timerText?.SetText(Mathf.CeilToInt(_time).ToString());
-        if(timerUIFill.fillAmount > splashTimes[lastTriggeredTimeIndex]){
+        if(timerUIFill.fillAmount < splashTimes[lastTriggeredTimeIndex]){
             lastTriggeredTimeIndex+=1;
             ShowSplash();
         }
@@ -41,7 +42,9 @@ public class Timer : MonoBehaviour
 
     void ShowSplash(){
         for(int i=0;i<numOfShowingGenangan;i++){
+            
             int randIndex = UnityEngine.Random.Range(0,genangans.Count);
+            Debug.Log(randIndex);
             genangans[randIndex].SetActive(true);
             genangans.RemoveAt(randIndex);
         }

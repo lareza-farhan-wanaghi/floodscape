@@ -11,11 +11,13 @@ public class InteractManager : MonoBehaviour
     [HideInInspector] public Backpack backpack;
     [HideInInspector] public Action<ItemData> onInteract;
     [HideInInspector] public MinigameManager minigameManager;
+    [HideInInspector] public AudioManager audioManager;
     
     void  Awake(){
         interactButton = GetComponent<Button>();
         backpack = FindObjectOfType<Backpack>();
         minigameManager = FindObjectOfType<MinigameManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void Init(Action<ItemData> _onInteract){
@@ -23,12 +25,14 @@ public class InteractManager : MonoBehaviour
     }
 
     public void Interact(){
+        audioManager.PlayButton();
         if(backpack.IsAvailable(interactableItem.data)){
             if(minigameManager == null || minigameManager.CheckForCompletion(interactableItem.data, Interact)){
                 backpack.ReduceItem(interactableItem.data.requiredItem);
                 backpack.AddItem(interactableItem.data);
                 onInteract(interactableItem.data);
                 interactableItem.gameObject.SetActive(false);
+                audioManager.PlayCollect();
             }
         } else {
             Debug.Log("Insufficient Items");
