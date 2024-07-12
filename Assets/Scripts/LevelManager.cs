@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     public MissionData[] levelMissionData;
 
     void Awake(){
+        LeanTween.cancelAll();
         timer = FindObjectOfType<Timer>();
         playerController = FindObjectOfType<PlayerController>();
         optionScreen = GameObject.FindGameObjectWithTag("screen-option");

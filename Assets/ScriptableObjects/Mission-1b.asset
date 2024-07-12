@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Mission-1b
   m_EditorClassIdentifier: 
   missionName: Cari Senter
+  missionUrgentNarasi: Segera cari senter untuk menerangi jalan!
   itemData: {fileID: 11400000, guid: 61f45cc5f80cf4517b03bab48a5eaf09, type: 2}
   missionSprite: {fileID: 21300000, guid: cbce603f37b6c44d4b2b8ce1de029015, type: 3}

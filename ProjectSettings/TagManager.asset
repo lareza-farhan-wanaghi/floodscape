@@ -8,6 +8,7 @@ TagManager:
   - screen-levelcompleted
   - screen-gameover
   - object-genangan
+  - text-speak
   layers:
   - Default
   - TransparentFX

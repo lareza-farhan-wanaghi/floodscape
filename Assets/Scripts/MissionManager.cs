@@ -29,6 +29,17 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    public ActiveMission GetRandomActiveMission(){
+        List<ActiveMission>activeMissionList  = new List<ActiveMission>();
+        foreach (ActiveMission missionOnRoll in activeMissions.Values)
+        {
+            if(!missionOnRoll.isCompleted){
+                activeMissionList.Add(missionOnRoll);
+            }
+        }
+        return activeMissionList[UnityEngine.Random.Range(0,activeMissionList.Count)];
+    }
+
     void CheckAllMissions() {
          foreach(ActiveMission missionOnRoll in activeMissions.Values){
             if(!missionOnRoll.isCompleted){

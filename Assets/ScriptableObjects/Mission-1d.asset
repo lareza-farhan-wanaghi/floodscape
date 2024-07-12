@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Mission-1d
   m_EditorClassIdentifier: 
   missionName: Cari Korek
+  missionUrgentNarasi: Gunakan korek untuk penerangan. Segera temukan!
   itemData: {fileID: 11400000, guid: 8aa54bb991e87473b8453efbc11b201a, type: 2}
   missionSprite: {fileID: 21300000, guid: d0927bf53467140679906bf38c6d25d4, type: 3}

@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource loseAudio;
     public AudioSource winAudio;
     public AudioSource collectAudio;
+    public AudioSource splashAudio;
 
     public void PlayButton(){
         buttonAudio.Play();
@@ -23,5 +24,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayCollect(){
         collectAudio.Play();
+    }
+
+    public void PlaySplash(){
+        splashAudio.Play();
     }
 }
