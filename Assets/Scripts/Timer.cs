@@ -49,6 +49,9 @@ public class Timer : MonoBehaviour
             timerText?.SetText(timeString);
             if(lastTime > 0 &&lastTime <= 9){
                 countdown.Show(timeString);
+                foreach(InteractableItem item in FindObjectsOfType<InteractableItem>()){
+                    item.Glow();
+                }
             }
         }
         if(timerUIFill.fillAmount < splashTimes[lastTriggeredTimeIndex]){
@@ -59,12 +62,13 @@ public class Timer : MonoBehaviour
 
     void ShowSplash(){
         audioManager.PlaySplash();
-        speakText.SetText(missionManager.GetRandomActiveMission().missionData.missionUrgentNarasi);
+        var activeMission = missionManager.GetRandomActiveMission();
+        audioManager.PlayVO(activeMission.missionData.clip);
+        speakText.SetText(activeMission.missionData.missionUrgentNarasi);
         speakText.gameObject.SetActive(true);
         LeanTween.delayedCall(3f,()=>speakText.gameObject.SetActive(false));
         for(int i=0;i<numOfShowingGenangan;i++){
             int randIndex = UnityEngine.Random.Range(0,genangans.Count);
-            Debug.Log(randIndex);
             genangans[randIndex].SetActive(true);
             genangans.RemoveAt(randIndex);
         }

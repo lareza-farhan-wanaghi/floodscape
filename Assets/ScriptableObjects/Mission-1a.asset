@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionName: Cari Pelampung
   missionUrgentNarasi: Segera temukan pelampung untuk mencegah tenggelam!
+  clip: {fileID: 8300000, guid: a2fedc2a2c25a4332a59c45c55a40054, type: 3}
   itemData: {fileID: 11400000, guid: 3e9023943a07b47a18984323043e0896, type: 2}
   missionSprite: {fileID: 21300000, guid: 6e115d97c15f047289457a6acd06d755, type: 3}

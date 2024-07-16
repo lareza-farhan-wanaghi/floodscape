@@ -13,7 +13,6 @@ public class MissionManager : MonoBehaviour
     public void Init(Action _onCompletedCallback, MissionData[] _missionDatas){
         for(int i=0;i<_missionDatas.Length;i++){
             GameObject ui = Instantiate(missionUIPrefab, transform);
-            ui.GetComponent<Image>().sprite = _missionDatas[i].missionSprite;
             activeMissions.Add(_missionDatas[i].missionName,new ActiveMission(_missionDatas[i],ui,false));
         }
         onCompleted = _onCompletedCallback;
@@ -56,12 +55,16 @@ public class MissionManager : MonoBehaviour
         public ActiveMission(MissionData _missionData, GameObject _ui, bool _isCompleted){
             missionData=_missionData;
             ui=_ui;
+            ui.transform.GetChild(0).GetComponent<Image>().sprite = _missionData.missionSprite;
+            ui.transform.GetChild(0).GetComponent<Image>().color = Color.black;
             isCompleted=_isCompleted;
         }
 
         public void MarkCompleted(){
             isCompleted = true;
-            ui.transform.GetChild(0).gameObject.SetActive(true);
+
+            ui.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            ui.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 }

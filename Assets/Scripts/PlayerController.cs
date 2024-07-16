@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     }
     
     public void Move(){
-        if (isMoveable && Input.GetMouseButtonDown(0) && !IsPointerOverUI())
+        if (isMoveable && Input.GetMouseButton(0) && !IsPointerOverUI())
         {   
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = 0f;

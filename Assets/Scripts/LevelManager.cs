@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public GameObject levelCompletedScreen;
     [HideInInspector] public AudioManager audioManager;
     public MissionData[] levelMissionData;
-
+    public float playtime = 30;
     void Awake(){
         LeanTween.cancelAll();
         timer = FindObjectOfType<Timer>();
@@ -39,9 +39,11 @@ public class LevelManager : MonoBehaviour
     {
         interactManager.Init(missionManager.CheckMission);
         missionManager.Init(Win,levelMissionData);
-        timer.StartTime(Lose, 30);
+
+        timer.StartTime(Lose,playtime);
         playerController.ResetPosition();
         HideScreen();
+        audioManager.PlayIntroVO();
     }
 
     public void RestartLevel(){
@@ -54,9 +56,6 @@ public class LevelManager : MonoBehaviour
         int buildidx = SceneManager.GetActiveScene().buildIndex+1;
         int maxbuild = SceneManager.sceneCountInBuildSettings;
         int nextcount = buildidx % maxbuild ;
-        Debug.Log(buildidx);
-        Debug.Log(maxbuild);
-        Debug.Log(nextcount);
         SceneManager.LoadScene(nextcount);
     }
 
@@ -105,9 +104,11 @@ public class LevelManager : MonoBehaviour
                 optionScreen.SetActive(true);
                 break;
             case ScreenType.LEVELCOMPLETED:
+                LeanTween.cancelAll();
                 levelCompletedScreen.SetActive(true);
                 break;
             case ScreenType.GAMEOVER:
+                LeanTween.cancelAll();
                 gameoverScreen.SetActive(true);
                 break;
         }

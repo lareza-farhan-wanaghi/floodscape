@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource winAudio;
     public AudioSource collectAudio;
     public AudioSource splashAudio;
-
+    public AudioSource VOAudio;
+    public AudioSource introVOAudio;
     public void PlayButton(){
         buttonAudio.Play();
     }
@@ -28,5 +29,14 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySplash(){
         splashAudio.Play();
+    }
+
+    public void PlayVO(AudioClip _clip){
+        splashAudio.clip =_clip;
+        splashAudio.Play();
+    }
+    
+    public void PlayIntroVO(){
+        introVOAudio.Play();
     }
 }

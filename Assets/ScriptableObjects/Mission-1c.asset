@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionName: Cari Hp
   missionUrgentNarasi: Segera cari HP untuk berkomunikasi dengan orang sekitar!
+  clip: {fileID: 8300000, guid: 612af9a662aae4f0293927b5db844775, type: 3}
   itemData: {fileID: 11400000, guid: d8a47415cde5349d1b6f10915478b41b, type: 2}
   missionSprite: {fileID: 21300000, guid: b143d3a5df9434779a2fed7fd5a4aa0e, type: 3}
