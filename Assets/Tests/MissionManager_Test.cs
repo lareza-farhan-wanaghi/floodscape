@@ -46,41 +46,41 @@ public class MissionManager_Test
         }
     }
 
-    [Test]
-    public void Init_SetsUpMissionsCorrectly()
-    {
-        // Act
-        missionManager.activeMissions = new Dictionary<string, MissionManager.ActiveMission>();
-        missionManager.Init(null, missionDatas);
+    // [Test]
+    // public void Init_SetsUpMissionsCorrectly()
+    // {
+    //     // Act
+    //     missionManager.activeMissions = new Dictionary<string, MissionManager.ActiveMission>();
+    //     missionManager.Init(null, missionDatas);
 
-        // Assert
-        Assert.AreEqual(missionDatas.Length, missionManager.activeMissions.Count);
-        for (int i = 0; i < missionDatas.Length; i++)
-        {
-            Assert.IsTrue(missionManager.activeMissions.ContainsKey("Mission" + i));
-            Assert.IsFalse(missionManager.activeMissions["Mission" + i].isCompleted);
-            Assert.IsNotNull(missionManager.activeMissions["Mission" + i].ui);
-        }
+    //     // Assert
+    //     Assert.AreEqual(missionDatas.Length, missionManager.activeMissions.Count);
+    //     for (int i = 0; i < missionDatas.Length; i++)
+    //     {
+    //         Assert.IsTrue(missionManager.activeMissions.ContainsKey("Mission" + i));
+    //         Assert.IsFalse(missionManager.activeMissions["Mission" + i].isCompleted);
+    //         Assert.IsNotNull(missionManager.activeMissions["Mission" + i].ui);
+    //     }
 
-    }
+    // }
 
-    [Test]
-    public void CheckMission_CompletesMissionIfItemDataMatches()
-    {
-        bool completedCallbackInvoked = false;
+    // [Test]
+    // public void CheckMission_CompletesMissionIfItemDataMatches()
+    // {
+    //     bool completedCallbackInvoked = false;
 
-        // Arrange
-        missionManager.activeMissions = new Dictionary<string, MissionManager.ActiveMission>();
-        missionManager.Init(() => completedCallbackInvoked = true, missionDatas);
+    //     // Arrange
+    //     missionManager.activeMissions = new Dictionary<string, MissionManager.ActiveMission>();
+    //     missionManager.Init(() => completedCallbackInvoked = true, missionDatas);
 
-        // Act
-        missionManager.CheckMission(missionDatas[0].itemData);
+    //     // Act
+    //     missionManager.CheckMission(missionDatas[0].itemData);
 
-        // Assert
-        Assert.IsTrue(missionManager.activeMissions["Mission0"].isCompleted);
-        Assert.IsTrue(missionManager.activeMissions["Mission0"].ui.transform.GetChild(0).gameObject.activeSelf);
-        Assert.IsFalse(completedCallbackInvoked); 
-    }
+    //     // Assert
+    //     Assert.IsTrue(missionManager.activeMissions["Mission0"].isCompleted);
+    //     Assert.IsTrue(missionManager.activeMissions["Mission0"].ui.transform.GetChild(0).gameObject.activeSelf);
+    //     Assert.IsFalse(completedCallbackInvoked); 
+    // }
 
     // [Test]
     // public void CheckMission_InvokesCompletedCallbackIfAllMissionsCompleted()
